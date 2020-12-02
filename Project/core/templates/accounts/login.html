@@ -24,13 +24,13 @@ Released   : 20131127
 </head>
 <body>
 
-
     <div class="login-page">
       <div class="form">
         <form class="login-form form-group" method="post">
             {% csrf_token %}
           <input type="text" placeholder="username" name="username" id ="id_username" onfocusout="Request();"/>
           <input type="password" placeholder="password" name="password"/>
+            <p id="erroCadastro"></p>
           <button type="submit", class="btn btn-success">login</button>
           <p class="message">Not registered? <a href="/register">Create an account</a></p>
         </form>
@@ -41,7 +41,10 @@ Released   : 20131127
 
 <script>
 
+
+
         function Request() {
+            document.getElementById("erroCadastro").innerHTML = ""
             var campoUsername = document.getElementById('id_username');
             var url = "{% url 'validateUsername' %}?username="+ encodeURIComponent(campoUsername.value)
             fetch(url)
@@ -52,7 +55,7 @@ Released   : 20131127
 
         function mostrarResposta(data) {
             if(!data.existe){
-                alert("Usuário não cadastrado")
+                document.getElementById("erroCadastro").innerHTML = "usuário não cadastrado"
             }
         }
 
