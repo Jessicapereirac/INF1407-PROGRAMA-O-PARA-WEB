@@ -17,7 +17,7 @@ def register(request):
             form.save()
             user = form.cleaned_data.get('username')
             messages.success(request, 'Conta criada para usuário: ' + user)
-            return redirect('login/')
+            return redirect("login")
         else:
             context = {
                 'form': form,
@@ -26,7 +26,7 @@ def register(request):
     else:
         # mostra o formulário
         form = UserCreationForm()
-        context = {'form' : form, }
+        context = {'form': form, }
         return render(request, 'accounts/register.html', context)
 
 
