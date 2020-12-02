@@ -3,6 +3,7 @@ from .forms import UserModel2Form
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from .models import Request
+from django.http import JsonResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -74,3 +75,11 @@ def results(request):
     context.update({request.name+'OBD': request.base_url + request.date for request in all_requests})
     print(context)
     return render(request, 'resultado.html', context)
+
+
+def validateUsername(request):
+    username = request.GET.get("username", None)
+    print("username: ", username)
+    resposta = {'existe':  User.objects.filter(username__iexact=username).exists()}
+    return JsonResponse(resposta)
+

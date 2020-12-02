@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, results, register, loginPage, logoutUser, deleteUser
+from .views import index, results, register, loginPage, logoutUser, deleteUser, validateUsername
 
 urlpatterns = [
     path('', index, name='index'),
@@ -8,4 +8,5 @@ urlpatterns = [
     path('login/', loginPage, name="login"),
     path('logout/', logoutUser, name='logout'),
     path('delete/', deleteUser, name='delete'),
+    path('validateUsername/', validateUsername, name="validateUsername"),
 ]

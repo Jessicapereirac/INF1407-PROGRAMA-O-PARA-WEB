@@ -23,4 +23,5 @@ urlpatterns = [
     path('login', include('core.urls')),
     path('logout', include('core.urls')),
     path('delete', include('core.urls')),
+    path('validateUsername', include('core.urls')),
 ]
